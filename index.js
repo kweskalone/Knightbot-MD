@@ -48,6 +48,18 @@ const { join } = require('path')
 // Import lightweight store
 const store = require('./lib/lightweight_store')
 
+//Expose port for render to keep app running
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot is running successfully!");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+
+
 // Initialize store
 store.readFromFile()
 const settings = require('./settings')
